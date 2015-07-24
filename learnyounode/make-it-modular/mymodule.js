@@ -7,11 +7,11 @@ module.exports = function (dirName, filter, callback) {
     fs.readdir(dirName, function (err, list) {
         if (err)
             return callback (err);
-        for (var i = 0; i < list.length; i++) {
-            if (path.extname(list[i]) == '.' + filter) {
-                array[i] = list[i];
+        array = list.filter(function(item){
+            if (path.extname(item) == '.' + filter) {
+                return item;
             }
-        }
+        })
         callback (null, array);
     })
 }
